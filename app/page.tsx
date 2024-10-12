@@ -45,7 +45,10 @@ export default function Home() {
       </header>
       <main
         id="builder"
-        className="grid min-h-screen grid-cols-1 lg:grid-cols-2"
+        className={cn(
+          'grid min-h-screen grid-cols-1 lg:grid-cols-2',
+          'delay-700 duration-1000 animate-in fade-in fill-mode-backwards'
+        )}
       >
         <ContextContent />
       </main>
