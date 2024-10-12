@@ -1,22 +1,13 @@
+import { XIcon } from 'lucide-react'
+
 import { useContentContext } from '@/components/main-content'
 import { Input } from '@/components/ui/input'
 import { Select } from '@/components/ui/select'
-
-type SocialsType = keyof typeof socials
-
-const socials = {
-  dribbble: 'Dribbble',
-  github: 'GitHub',
-  linkedin: 'LinkedIn',
-  mail: 'Email',
-  other: 'Other',
-  phone: 'Phone',
-  x: 'X (formerly Twitter)',
-}
+import { socials } from '@/lib/utils'
 
 export function ContactInformationFields() {
   const { contactInformation, setContactInformation } = useContentContext()
-  const handleTypeChange = (id: string, type: SocialsType) => {
+  const handleTypeChange = (id: string, type: keyof typeof socials) => {
     setContactInformation((prev) =>
       prev.map((item) => {
         if (item.id === id) {
@@ -36,15 +27,21 @@ export function ContactInformationFields() {
       })
     )
   }
+  const handleRemove = (id: string) => {
+    setContactInformation((prev) => {
+      return prev.filter((item) => item.id !== id)
+    })
+  }
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {contactInformation.map(({ id, type, value }) => {
         return (
-          <div key={id} className="grid grid-cols-2 gap-3">
+          <div key={id} className="flex items-center space-x-2">
             <Select
+              className="w-full"
               value={type}
               onChange={(event) => {
-                handleTypeChange(id, event.target.value as SocialsType)
+                handleTypeChange(id, event.target.value as keyof typeof socials)
               }}
             >
               {Object.entries(socials).map(([type, display]) => {
@@ -56,6 +53,7 @@ export function ContactInformationFields() {
               })}
             </Select>
             <Input
+              className="w-full"
               type={
                 type === 'mail' ? 'email' : type === 'phone' ? 'tel' : 'text'
               }
@@ -71,6 +69,14 @@ export function ContactInformationFields() {
                     : `https://${type}.com`
               }
             />
+            <button
+              type="button"
+              onClick={() => {
+                handleRemove(id)
+              }}
+            >
+              <XIcon className="text-slate-800" size={16} />
+            </button>
           </div>
         )
       })}

@@ -6,7 +6,7 @@ import { useState } from 'react'
 export function SponsorBanner() {
   const [open, setOpen] = useState(true)
   return open ? (
-    <div className="sticky top-0 z-10 w-full bg-black p-2">
+    <div className="sticky top-0 z-10 w-full bg-black p-2 shadow-md">
       <p className="self-center text-center text-sm text-white">
         Like this project?{' '}
         <a
