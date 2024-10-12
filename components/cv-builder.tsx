@@ -1,33 +1,37 @@
 'use client'
 
-import { useState } from 'react'
-
+import { useContentContext } from '@/components/context-content'
 import { Input } from '@/components/input'
 import { Label } from '@/components/label'
 
 export function CVBuidler() {
-  const [fields, setFields] = useState({
-    fullName: '',
-    title: '',
-    email: '',
-    phone: '',
-  })
-  const handleChange = (key: keyof typeof fields, value: string) => {
-    setFields((prev) => ({ ...prev, [key]: value }))
-  }
+  const { fields, onFieldChange } = useContentContext()
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <h2 className="text-lg font-bold text-slate-800">Personal Information</h2>
-      <div className="mt-2">
-        <Label htmlFor="name">Name</Label>
-        <Input
-          id="name"
-          className="mt-0.5 w-full"
-          type="text"
-          value={fields.fullName}
-          onChange={(e) => handleChange('fullName', e.target.value)}
-          placeholder="John Doe"
-        />
+      <div className="mt-2 grid grid-cols-1 gap-3 md:grid-cols-2">
+        <div>
+          <Label htmlFor="name">Name</Label>
+          <Input
+            id="name"
+            className="mt-0.5 w-full"
+            type="text"
+            value={fields.name}
+            onChange={(e) => onFieldChange('name', e.target.value)}
+            placeholder="Jane Doe"
+          />
+        </div>
+        <div>
+          <Label htmlFor="title">Title</Label>
+          <Input
+            id="title"
+            className="mt-0.5 w-full"
+            type="text"
+            value={fields.title}
+            onChange={(e) => onFieldChange('title', e.target.value)}
+            placeholder="Senior Software Engineer"
+          />
+        </div>
       </div>
     </form>
   )
