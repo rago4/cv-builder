@@ -38,7 +38,7 @@ function ContactItem({
   type: keyof typeof socials
   value: string
 }) {
-  const Icon = iconMap[type]
+  const Icon = iconMap[type] ?? LinkIcon
   return (
     <li className="flex items-center space-x-2 text-slate-600">
       <Icon size={16} />
