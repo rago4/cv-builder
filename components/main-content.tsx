@@ -48,7 +48,7 @@ export function useContentContext() {
   return context
 }
 
-export function ContextContent() {
+export function MainContent() {
   return (
     <ContentProvider>
       <section className="border-b border-l-0 border-slate-200 p-8 lg:border-b-0 lg:border-r">

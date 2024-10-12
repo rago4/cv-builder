@@ -1,8 +1,8 @@
 'use client'
 
-import { useContentContext } from '@/components/context-content'
 import { Input } from '@/components/input'
 import { Label } from '@/components/label'
+import { useContentContext } from '@/components/main-content'
 
 export function CVBuidler() {
   const { fields, onFieldChange } = useContentContext()

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { ContextContent } from '@/components/context-content'
+import { MainContent } from '@/components/main-content'
 import { SponsorBanner } from '@/components/sponsor-banner'
 import { cn } from '@/lib/utils'
 
@@ -50,7 +50,7 @@ export default function Home() {
           'delay-700 duration-1000 animate-in fade-in fill-mode-backwards'
         )}
       >
-        <ContextContent />
+        <MainContent />
       </main>
     </>
   )
