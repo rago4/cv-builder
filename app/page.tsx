@@ -46,7 +46,7 @@ export default function Home() {
       <main
         id="builder"
         className={cn(
-          'grid min-h-screen grid-cols-1 lg:grid-cols-2',
+          'grid grid-cols-1 lg:min-h-screen lg:grid-cols-2',
           'delay-700 duration-1000 animate-in fade-in fill-mode-backwards'
         )}
       >

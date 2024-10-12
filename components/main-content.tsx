@@ -1,19 +1,27 @@
 'use client'
 
-import type { ReactNode } from 'react'
+import type { Dispatch, ReactNode, SetStateAction } from 'react'
 import { createContext, useContext, useState } from 'react'
 
 import { CVBuidler } from '@/components/cv-builder'
 import { CVDisplay } from '@/components/cv-display'
 
-type Fields = {
+type FieldsType = {
   name: string
   title: string
 }
 
+type ContactInformationType = {
+  id: string
+  type: 'dribbble' | 'github' | 'linkedin' | 'mail' | 'other' | 'phone' | 'x'
+  value: string
+}
+
 type ContentContextType = {
-  fields: Fields
-  onFieldChange: (key: keyof Fields, value: string) => void
+  fields: FieldsType
+  onFieldChange: (key: keyof FieldsType, value: string) => void
+  contactInformation: ContactInformationType[]
+  setContactInformation: Dispatch<SetStateAction<ContactInformationType[]>>
 }
 
 const ContentContext = createContext<ContentContextType | undefined>(undefined)
@@ -23,16 +31,20 @@ function ContentProvider({ children }: { children: ReactNode }) {
     name: '',
     title: '',
   })
+  const [contactInformation, setContactInformation] = useState<
+    ContactInformationType[]
+  >([])
   return (
     <ContentContext.Provider
       value={{
         fields,
         onFieldChange: (key, value) => {
-          setFields((prevFields) => ({
-            ...prevFields,
-            [key]: value,
-          }))
+          setFields((prev) => {
+            return { ...prev, [key]: value }
+          })
         },
+        contactInformation,
+        setContactInformation,
       }}
     >
       {children}
