@@ -63,7 +63,7 @@ export function WorkExperienceFields() {
                   onChange={(e) => {
                     handleFieldChange(id, 'position', e.target.value)
                   }}
-                  placeholder="Software Engineer"
+                  placeholder="Senior Software Engineer"
                 />
               </div>
               <div className="space-y-1">
@@ -101,7 +101,7 @@ export function WorkExperienceFields() {
                     handleFieldChange(id, 'description', e.target.value)
                   }}
                   rows={3}
-                  placeholder="Describe your role and responsibilities. Use semicolons to create a list."
+                  placeholder="Describe your role and responsibilities. Use semicolons to switch from sentence to a list."
                 />
               </div>
             </div>

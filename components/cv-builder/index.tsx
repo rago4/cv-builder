@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { cn, uuid } from '@/lib/utils'
 
 import { ContactInformationFields } from './contact-information-fields'
+import { EducationFields } from './education-fields'
 import { WorkExperienceFields } from './work-experience-fields'
 
 function Button({ className, ...props }: JSX.IntrinsicElements['button']) {
@@ -32,6 +33,8 @@ export function CVBuidler() {
     setContactInformation,
     workExperience,
     setWorkExperience,
+    education,
+    setEducation,
   } = useContentContext()
   const handleContactInformationAdd = () => {
     setContactInformation((prev) => [
@@ -50,6 +53,20 @@ export function CVBuidler() {
           startDate: '',
           endDate: '',
           description: '',
+        },
+      ]
+    })
+  }
+  const handleEducationAdd = () => {
+    setEducation((prev) => {
+      return [
+        ...prev,
+        {
+          id: uuid(),
+          degree: '',
+          institution: '',
+          startYear: '',
+          endYear: '',
         },
       ]
     })
@@ -126,6 +143,18 @@ export function CVBuidler() {
           <span>Add Experience</span>
         </Button>
         {workExperience.length > 0 && <WorkExperienceFields />}
+      </div>
+      <div className="space-y-2">
+        <H2>Education</H2>
+        <Button
+          className="flex w-full items-center justify-center space-x-0.5 md:w-auto"
+          type="button"
+          onClick={handleEducationAdd}
+        >
+          <PlusIcon size={16} />
+          <span>Add Education</span>
+        </Button>
+        {education.length > 0 && <EducationFields />}
       </div>
     </form>
   )
