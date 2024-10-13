@@ -36,12 +36,12 @@ export function CVBuidler() {
     <form onSubmit={(e) => e.preventDefault()}>
       <div>
         <H2>Personal Information</H2>
-        <div className="mt-1 grid grid-cols-1 gap-3 md:grid-cols-2">
+        <div className="mt-2 grid grid-cols-1 gap-3 md:grid-cols-2">
           <div>
             <Label htmlFor="name">Name</Label>
             <Input
               id="name"
-              className="mt-0.5 w-full"
+              className="mt-1 w-full"
               type="text"
               value={fields.name}
               onChange={(e) => onFieldChange('name', e.target.value)}
@@ -52,7 +52,7 @@ export function CVBuidler() {
             <Label htmlFor="title">Title</Label>
             <Input
               id="title"
-              className="mt-0.5 w-full"
+              className="mt-1 w-full"
               type="text"
               value={fields.title}
               onChange={(e) => onFieldChange('title', e.target.value)}
@@ -61,7 +61,7 @@ export function CVBuidler() {
           </div>
         </div>
       </div>
-      <div className="mt-5">
+      <div className="mt-3">
         <H2>Contact Information</H2>
         <Button
           className="mb-3 mt-2 flex w-full items-center justify-center space-x-0.5 md:w-auto"
@@ -73,7 +73,7 @@ export function CVBuidler() {
         </Button>
         {contactInformation.length > 0 && <ContactInformationFields />}
       </div>
-      <div className="mt-5">
+      <div className="mt-3">
         <H2>Summary</H2>
         <Textarea
           className="mt-2 w-full resize-none"
@@ -81,6 +81,16 @@ export function CVBuidler() {
           onChange={(e) => onFieldChange('summary', e.target.value)}
           placeholder="A passionate software engineer with 5 years of experience..."
           rows={3}
+        />
+      </div>
+      <div className="mt-3">
+        <H2>Skills</H2>
+        <Input
+          className="mt-2 w-full"
+          type="text"
+          value={fields.skills}
+          onChange={(e) => onFieldChange('skills', e.target.value)}
+          placeholder="List of skills separated by semicolon e.g. React, Next.js; TypeScript, JavaScript (ES6+)"
         />
       </div>
     </form>

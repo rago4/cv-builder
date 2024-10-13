@@ -10,6 +10,7 @@ type FieldsType = {
   name: string
   title: string
   summary: string
+  skills: string
 }
 
 type ContactInformationType = {
@@ -32,6 +33,7 @@ function ContentProvider({ children }: { children: ReactNode }) {
     name: '',
     title: '',
     summary: '',
+    skills: '',
   })
   const [contactInformation, setContactInformation] = useState<
     ContactInformationType[]

@@ -52,6 +52,10 @@ function ContactItem({
 
 export function CVDisplay() {
   const { fields, contactInformation } = useContentContext()
+  const skills = fields.skills
+    .split(';')
+    .map((skill) => skill.trim())
+    .filter((skill) => skill.length > 0)
   return (
     <div className="rounded-md bg-white p-8 shadow-lg">
       {fields.name.length > 0 && (
@@ -78,6 +82,20 @@ export function CVDisplay() {
         <div className="mt-3">
           <H2>Summary</H2>
           <p className="mt-1 text-slate-600">{fields.summary}</p>
+        </div>
+      )}
+      {skills.length > 0 && (
+        <div className="mt-3">
+          <H2>Skills</H2>
+          <ul className="mt-1 list-inside list-disc space-y-1">
+            {skills.map((skill) => {
+              return (
+                <li key={skill} className="text-slate-600">
+                  {skill}
+                </li>
+              )
+            })}
+          </ul>
         </div>
       )}
     </div>
