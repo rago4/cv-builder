@@ -6,11 +6,17 @@ import { cn } from '@/lib/utils'
 
 const slideInAnimation = 'animate-in fade-in slide-in-from-bottom-2'
 
+const footerLinks = [
+  { href: 'https://x.com/rgolawski', label: 'Twitter' },
+  { href: 'https://github.com/rago4', label: 'GitHub' },
+]
+
 export default function Home() {
+  const currentYear = new Date().getFullYear()
   return (
     <>
       <SponsorBanner />
-      <header className="border-b border-slate-300 px-5 py-10">
+      <header className="px-5 py-10">
         <div className="container mx-auto text-center">
           <h1
             className={cn(
@@ -48,13 +54,34 @@ export default function Home() {
       <main
         id="builder"
         className={cn(
-          'grid grid-cols-1 lg:min-h-screen lg:grid-cols-2',
+          'grid grid-cols-1 border-t border-slate-300 lg:min-h-screen lg:grid-cols-2',
           'animate-in fade-in fill-mode-backwards'
         )}
         style={{ animationDuration: '1000ms', animationDelay: '700ms' }}
       >
         <MainContent />
       </main>
+      <footer className="border-t border-slate-300 px-5 py-4">
+        <nav className="flex items-center justify-between text-sm text-slate-800">
+          <p>&copy; {currentYear} Free CV Generator. All rights reserved.</p>
+          <ul className="flex space-x-2">
+            {footerLinks.map(({ href, label }) => {
+              return (
+                <li key={href}>
+                  <a
+                    className="hover:underline"
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {label}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
+      </footer>
     </>
   )
 }
