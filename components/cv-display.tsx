@@ -58,7 +58,8 @@ function ContactItem({
 }
 
 export function CVDisplay() {
-  const { fields, contactInformation, workExperience } = useContentContext()
+  const { fields, contactInformation, workExperience, education } =
+    useContentContext()
   const skills = fields.skills
     .split(';')
     .map((skill) => skill.trim())
@@ -139,6 +140,23 @@ export function CVDisplay() {
                     ) : (
                       <p className="mt-1 text-slate-600">{description}</p>
                     )}
+                  </div>
+                )
+              }
+            )}
+          </div>
+        </div>
+      )}
+      {education.length > 0 && (
+        <div className="space-y-1">
+          <H2>Education</H2>
+          <div className="space-y-2">
+            {education.map(
+              ({ id, institution, degree, startYear, endYear }) => {
+                return (
+                  <div key={id}>
+                    <p className="font-medium text-slate-800">{degree}</p>
+                    <p className="text-slate-600">{`${institution}, ${startYear} - ${endYear || 'Present'}`}</p>
                   </div>
                 )
               }
