@@ -7,21 +7,11 @@ import { socials } from '@/lib/utils'
 
 export function ContactInformationFields() {
   const { contactInformation, setContactInformation } = useContentContext()
-  const handleTypeChange = (id: string, type: keyof typeof socials) => {
+  const handleFieldChange = (id: string, key: string, value: string) => {
     setContactInformation((prev) =>
       prev.map((item) => {
         if (item.id === id) {
-          return { ...item, type }
-        }
-        return item
-      })
-    )
-  }
-  const handleValueChange = (id: string, value: string) => {
-    setContactInformation((prev) =>
-      prev.map((item) => {
-        if (item.id === id) {
-          return { ...item, value }
+          return { ...item, [key]: value }
         }
         return item
       })
@@ -41,7 +31,7 @@ export function ContactInformationFields() {
               className="w-full"
               value={type}
               onChange={(e) => {
-                handleTypeChange(id, e.target.value as keyof typeof socials)
+                handleFieldChange(id, 'type', e.target.value)
               }}
             >
               {Object.entries(socials).map(([type, display]) => {
@@ -59,7 +49,7 @@ export function ContactInformationFields() {
               }
               value={value}
               onChange={(e) => {
-                handleValueChange(id, e.target.value)
+                handleFieldChange(id, 'value', e.target.value)
               }}
               placeholder={
                 type === 'mail'

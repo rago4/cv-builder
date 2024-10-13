@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { cn, uuid } from '@/lib/utils'
 
 import { ContactInformationFields } from './contact-information-fields'
+import { WorkExperienceFields } from './work-experience-fields'
 
 function Button({ className, ...props }: JSX.IntrinsicElements['button']) {
   return (
@@ -24,19 +25,40 @@ function Button({ className, ...props }: JSX.IntrinsicElements['button']) {
 }
 
 export function CVBuidler() {
-  const { fields, onFieldChange, contactInformation, setContactInformation } =
-    useContentContext()
+  const {
+    fields,
+    onFieldChange,
+    contactInformation,
+    setContactInformation,
+    workExperience,
+    setWorkExperience,
+  } = useContentContext()
   const handleContactInformationAdd = () => {
     setContactInformation((prev) => [
       ...prev,
       { id: uuid(), type: 'mail', value: '' },
     ])
   }
+  const handleWorkExperienceAdd = () => {
+    setWorkExperience((prev) => {
+      return [
+        ...prev,
+        {
+          id: uuid(),
+          company: '',
+          position: '',
+          startDate: '',
+          endDate: '',
+          description: '',
+        },
+      ]
+    })
+  }
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
       <div>
         <H2>Personal Information</H2>
-        <div className="mt-2 grid grid-cols-1 gap-3 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           <div>
             <Label htmlFor="name">Name</Label>
             <Input
@@ -61,37 +83,49 @@ export function CVBuidler() {
           </div>
         </div>
       </div>
-      <div className="mt-3">
+      <div className="space-y-2">
         <H2>Contact Information</H2>
         <Button
-          className="mb-3 mt-2 flex w-full items-center justify-center space-x-0.5 md:w-auto"
+          className="flex w-full items-center justify-center space-x-0.5 md:w-auto"
           type="button"
           onClick={handleContactInformationAdd}
         >
           <PlusIcon size={16} />
-          <span>Add Contact Information</span>
+          <span>Add Information</span>
         </Button>
         {contactInformation.length > 0 && <ContactInformationFields />}
       </div>
-      <div className="mt-3">
+      <div className="space-y-2">
         <H2>Summary</H2>
         <Textarea
-          className="mt-2 w-full resize-none"
+          className="w-full resize-none"
           value={fields.summary}
           onChange={(e) => onFieldChange('summary', e.target.value)}
-          placeholder="A passionate software engineer with 5 years of experience..."
           rows={3}
+          placeholder="A passionate software engineer with 5 years of experience..."
         />
       </div>
-      <div className="mt-3">
+      <div className="space-y-2">
         <H2>Skills</H2>
         <Input
-          className="mt-2 w-full"
+          className="w-full"
           type="text"
           value={fields.skills}
           onChange={(e) => onFieldChange('skills', e.target.value)}
           placeholder="List of skills separated by semicolon e.g. React, Next.js; TypeScript, JavaScript (ES6+)"
         />
+      </div>
+      <div className="space-y-2">
+        <H2>Work Experience</H2>
+        <Button
+          className="flex w-full items-center justify-center space-x-0.5 md:w-auto"
+          type="button"
+          onClick={handleWorkExperienceAdd}
+        >
+          <PlusIcon size={16} />
+          <span>Add Experience</span>
+        </Button>
+        {workExperience.length > 0 && <WorkExperienceFields />}
       </div>
     </form>
   )

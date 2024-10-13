@@ -19,11 +19,22 @@ type ContactInformationType = {
   value: string
 }
 
+type WorkExperienceType = {
+  id: string
+  company: string
+  position: string
+  startDate: string
+  endDate: string
+  description: string
+}
+
 type ContentContextType = {
   fields: FieldsType
   onFieldChange: (key: keyof FieldsType, value: string) => void
   contactInformation: ContactInformationType[]
   setContactInformation: Dispatch<SetStateAction<ContactInformationType[]>>
+  workExperience: WorkExperienceType[]
+  setWorkExperience: Dispatch<SetStateAction<WorkExperienceType[]>>
 }
 
 const ContentContext = createContext<ContentContextType | undefined>(undefined)
@@ -38,6 +49,7 @@ function ContentProvider({ children }: { children: ReactNode }) {
   const [contactInformation, setContactInformation] = useState<
     ContactInformationType[]
   >([])
+  const [workExperience, setWorkExperience] = useState<WorkExperienceType[]>([])
   return (
     <ContentContext.Provider
       value={{
@@ -49,6 +61,8 @@ function ContentProvider({ children }: { children: ReactNode }) {
         },
         contactInformation,
         setContactInformation,
+        workExperience,
+        setWorkExperience,
       }}
     >
       {children}
