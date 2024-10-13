@@ -89,7 +89,7 @@ export function WorkExperienceFields() {
                     handleFieldChange(id, 'endDate', e.target.value)
                   }}
                 />
-                <p className="text-xs text-slate-600">Leave empty if current</p>
+                <p className="text-xs text-slate-600">Leave empty if present</p>
               </div>
               <div className="col-span-2 space-y-1">
                 <Label htmlFor={`description-${id}`}>Description</Label>
@@ -101,7 +101,7 @@ export function WorkExperienceFields() {
                     handleFieldChange(id, 'description', e.target.value)
                   }}
                   rows={3}
-                  placeholder="As a software engineer, I was responsible for..."
+                  placeholder="Describe your role and responsibilities. Use semicolons to create a list."
                 />
               </div>
             </div>

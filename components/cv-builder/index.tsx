@@ -59,22 +59,22 @@ export function CVBuidler() {
       <div>
         <H2>Personal Information</H2>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          <div>
+          <div className="space-y-1">
             <Label htmlFor="name">Name</Label>
             <Input
               id="name"
-              className="mt-1 w-full"
+              className="w-full"
               type="text"
               value={fields.name}
               onChange={(e) => onFieldChange('name', e.target.value)}
               placeholder="Jane Doe"
             />
           </div>
-          <div>
+          <div className="space-y-1">
             <Label htmlFor="title">Title</Label>
             <Input
               id="title"
-              className="mt-1 w-full"
+              className="w-full"
               type="text"
               value={fields.title}
               onChange={(e) => onFieldChange('title', e.target.value)}
