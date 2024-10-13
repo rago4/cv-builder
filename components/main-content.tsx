@@ -9,6 +9,7 @@ import { CVDisplay } from '@/components/cv-display'
 type FieldsType = {
   name: string
   title: string
+  summary: string
 }
 
 type ContactInformationType = {
@@ -30,6 +31,7 @@ function ContentProvider({ children }: { children: ReactNode }) {
   const [fields, setFields] = useState({
     name: '',
     title: '',
+    summary: '',
   })
   const [contactInformation, setContactInformation] = useState<
     ContactInformationType[]

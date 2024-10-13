@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 
 import { useContentContext } from '@/components/main-content'
+import { H2 } from '@/components/ui/h2'
 import { socials } from '@/lib/utils'
 
 const iconMap = {
@@ -53,14 +54,16 @@ export function CVDisplay() {
   const { fields, contactInformation } = useContentContext()
   return (
     <div className="rounded-md bg-white p-8 shadow-lg">
-      <p className="text-2xl font-bold">{fields.name}</p>
-      <p className="text-lg text-slate-600">{fields.title}</p>
+      {fields.name.length > 0 && (
+        <p className="text-2xl font-bold">{fields.name}</p>
+      )}
+      {fields.title.length > 0 && (
+        <p className="text-lg text-slate-600">{fields.title}</p>
+      )}
       {contactInformation.length > 0 && (
         <div className="mt-3">
-          <h2 className="text-lg font-bold text-slate-800">
-            Contact Information
-          </h2>
-          <ul className="mt-2 space-y-1">
+          <H2>Contact Information</H2>
+          <ul className="mt-1 space-y-1">
             {contactInformation.map(({ id, type, value }) => {
               return (
                 <li key={id}>
@@ -69,6 +72,12 @@ export function CVDisplay() {
               )
             })}
           </ul>
+        </div>
+      )}
+      {fields.summary.length > 0 && (
+        <div className="mt-3">
+          <H2>Summary</H2>
+          <p className="mt-1 text-slate-600">{fields.summary}</p>
         </div>
       )}
     </div>

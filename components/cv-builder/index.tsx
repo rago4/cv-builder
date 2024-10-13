@@ -3,20 +3,13 @@
 import { PlusIcon } from 'lucide-react'
 
 import { useContentContext } from '@/components/main-content'
+import { H2 } from '@/components/ui/h2'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
 import { cn, uuid } from '@/lib/utils'
 
 import { ContactInformationFields } from './contact-information-fields'
-
-function H2({ className, ...props }: JSX.IntrinsicElements['h2']) {
-  return (
-    <h2
-      {...props}
-      className={cn('text-lg font-bold text-slate-800', className)}
-    />
-  )
-}
 
 function Button({ className, ...props }: JSX.IntrinsicElements['button']) {
   return (
@@ -79,6 +72,16 @@ export function CVBuidler() {
           <span>Add Contact Information</span>
         </Button>
         {contactInformation.length > 0 && <ContactInformationFields />}
+      </div>
+      <div className="mt-5">
+        <H2>Summary</H2>
+        <Textarea
+          className="mt-2 w-full resize-none"
+          value={fields.summary}
+          onChange={(e) => onFieldChange('summary', e.target.value)}
+          placeholder="A passionate software engineer with 5 years of experience..."
+          rows={3}
+        />
       </div>
     </form>
   )

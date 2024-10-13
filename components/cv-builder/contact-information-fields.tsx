@@ -40,8 +40,8 @@ export function ContactInformationFields() {
             <Select
               className="w-full"
               value={type}
-              onChange={(event) => {
-                handleTypeChange(id, event.target.value as keyof typeof socials)
+              onChange={(e) => {
+                handleTypeChange(id, e.target.value as keyof typeof socials)
               }}
             >
               {Object.entries(socials).map(([type, display]) => {
@@ -58,8 +58,8 @@ export function ContactInformationFields() {
                 type === 'mail' ? 'email' : type === 'phone' ? 'tel' : 'text'
               }
               value={value}
-              onChange={(event) => {
-                handleValueChange(id, event.target.value)
+              onChange={(e) => {
+                handleValueChange(id, e.target.value)
               }}
               placeholder={
                 type === 'mail'
