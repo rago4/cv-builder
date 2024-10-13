@@ -5,12 +5,15 @@ import { createContext, useContext, useState } from 'react'
 
 import { CVBuidler } from '@/components/cv-builder'
 import { CVDisplay } from '@/components/cv-display'
+import { defaultConsent } from '@/lib/utils'
 
 type FieldsType = {
   name: string
   title: string
   summary: string
   skills: string
+  consentChecked: 'false' | 'true'
+  consent: string
 }
 
 type ContactInformationType = {
@@ -50,11 +53,13 @@ type ContentContextType = {
 const ContentContext = createContext<ContentContextType | undefined>(undefined)
 
 function ContentProvider({ children }: { children: ReactNode }) {
-  const [fields, setFields] = useState({
+  const [fields, setFields] = useState<FieldsType>({
     name: '',
     title: '',
     summary: '',
     skills: '',
+    consentChecked: 'false',
+    consent: defaultConsent,
   })
   const [contactInformation, setContactInformation] = useState<
     ContactInformationType[]

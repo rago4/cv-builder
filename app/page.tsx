@@ -62,7 +62,7 @@ export default function Home() {
         <MainContent />
       </main>
       <footer className="border-t border-slate-300 px-5 py-4">
-        <nav className="flex items-center justify-between text-sm text-slate-800">
+        <nav className="flex flex-col items-center justify-between text-center text-sm text-slate-800 md:flex-row">
           <p>&copy; {currentYear} Free CV Generator. All rights reserved.</p>
           <ul className="flex space-x-2">
             {footerLinks.map(({ href, label }) => {

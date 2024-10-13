@@ -164,6 +164,9 @@ export function CVDisplay() {
           </div>
         </div>
       )}
+      {fields.consentChecked === 'true' && fields.consent.length > 0 && (
+        <p className="text-sm text-slate-600">{fields.consent}</p>
+      )}
     </div>
   )
 }

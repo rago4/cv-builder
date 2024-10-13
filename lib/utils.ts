@@ -1,6 +1,9 @@
 import clsx, { type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
+export const defaultConsent =
+  'I hereby give consent for my personal data included in the application to be processed by (company name) for the purposes of the recruitment process.'
+
 export const socials = {
   dribbble: 'Dribbble',
   github: 'GitHub',
