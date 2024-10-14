@@ -1,18 +1,13 @@
 import Link from 'next/link'
 
+import { Footer } from '@/components/footer'
 import { MainContent } from '@/components/main-content'
 import { SponsorBanner } from '@/components/sponsor-banner'
 import { cn } from '@/lib/utils'
 
 const slideInAnimation = 'animate-in fade-in slide-in-from-bottom-2'
 
-const footerLinks = [
-  { href: 'https://x.com/rgolawski', label: 'Twitter' },
-  { href: 'https://github.com/rago4', label: 'GitHub' },
-]
-
 export default function Home() {
-  const currentYear = new Date().getFullYear()
   return (
     <>
       <SponsorBanner />
@@ -61,27 +56,7 @@ export default function Home() {
       >
         <MainContent />
       </main>
-      <footer className="border-t border-slate-300 px-5 py-4">
-        <nav className="flex flex-col items-center justify-between text-center text-sm text-slate-800 md:flex-row">
-          <p>&copy; {currentYear} Free CV Generator. All rights reserved.</p>
-          <ul className="flex space-x-2">
-            {footerLinks.map(({ href, label }) => {
-              return (
-                <li key={href}>
-                  <a
-                    className="hover:underline"
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {label}
-                  </a>
-                </li>
-              )
-            })}
-          </ul>
-        </nav>
-      </footer>
+      <Footer />
     </>
   )
 }
