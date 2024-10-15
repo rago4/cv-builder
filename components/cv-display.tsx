@@ -79,11 +79,7 @@ export function CVDisplay() {
           <H2>Contact Information</H2>
           <ul className="space-y-1">
             {contactInformation.map(({ id, type, value }) => {
-              return (
-                <li key={id}>
-                  <ContactItem type={type} value={value} />
-                </li>
-              )
+              return <ContactItem key={id} type={type} value={value} />
             })}
           </ul>
         </div>

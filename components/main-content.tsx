@@ -1,11 +1,17 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
 import { createContext, useContext, useState } from 'react'
 
 import { CVBuidler } from '@/components/cv-builder'
 import { CVDisplay } from '@/components/cv-display'
 import { defaultConsent } from '@/lib/utils'
+
+const PDFExport = dynamic(
+  () => import('@/components/pdf-export').then((mod) => mod.PDFExport),
+  { ssr: false }
+)
 
 type FieldsType = {
   name: string
@@ -103,8 +109,9 @@ export function MainContent() {
       <section className="border-b border-l-0 border-slate-200 p-8 lg:border-b-0 lg:border-r">
         <CVBuidler />
       </section>
-      <section className="bg-slate-50 p-8">
+      <section className="space-y-4 bg-slate-50 p-8">
         <CVDisplay />
+        <PDFExport />
       </section>
     </ContentProvider>
   )

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Footer } from '@/components/footer'
 import { MainContent } from '@/components/main-content'
 import { SponsorBanner } from '@/components/sponsor-banner'
+import { styles as buttonStyles } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 const slideInAnimation = 'animate-in fade-in slide-in-from-bottom-2'
@@ -36,18 +37,20 @@ export default function Home() {
           </p>
           <Link
             className={cn(
-              'mt-4 inline-block rounded-md bg-slate-900 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-800',
+              'mt-4 inline-block',
+              buttonStyles.base,
+              buttonStyles.primary,
               `${slideInAnimation} fill-mode-backwards`
             )}
             style={{ animationDuration: '700ms', animationDelay: '500ms' }}
-            href="#builder"
+            href="#cv-builder"
           >
             Get Started
           </Link>
         </div>
       </header>
       <main
-        id="builder"
+        id="cv-builder"
         className={cn(
           'grid grid-cols-1 border-t border-slate-300 lg:min-h-screen lg:grid-cols-2',
           'animate-in fade-in fill-mode-backwards'
